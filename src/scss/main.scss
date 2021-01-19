@@ -1,0 +1,31 @@
+* {
+	margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body, html, #root {	
+	height: 100%;
+   width: 100%;
+}
+
+body {
+   background: rgb(131,58,180);
+   background: linear-gradient(152deg, rgba(131,58,180,1) 0%, rgba(138,65,173,1) 48%, rgba(252,176,69,1) 100%) no-repeat;
+}
+
+
+.main-title {
+   color: #fff;
+}
+
+.form-wrap {
+   width: 420px;
+   padding: 20px;
+   position: relative;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+@import './button.scss';
