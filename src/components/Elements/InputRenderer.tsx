@@ -5,8 +5,15 @@ import {
 } from '@material-ui/core';
 
 interface InputRendererProps {
+   id: string,
+   name: string,
+   type: string,
    label: string,
-   value: string
+   value: string,
+   changeValueCallback(value: string): void,
+   // isValid: boolean,
+   errorText: string
+   // setIsValid(): boolean
 }
 
 const CustomInput = withStyles({
@@ -19,16 +26,7 @@ const CustomInput = withStyles({
       },
       '& fieldset': {
          borderColor: '#fff',
-         // '&:hover': {
-         //    borderColor: 'rgba(255, 255, 255, .7)'
-         // },
       },
-      '&:hover $notchedOutline': {
-         borderColor: 'rgba(255, 255, 255, .7)'
-      },
-      '&:focus': {
-         
-      }
    },
 })(TextField);
 
@@ -39,7 +37,10 @@ const useStyles = makeStyles(() => ({
       '& .MuiFormLabel-root': {
          color: '#fff',
       },
-      '&:hover $notchedOutline': {
+      '&:hover $notchedOutline, &:focus $notchedOutline': {
+         borderColor: 'rgba(255, 255, 255, .7)'
+      },
+      '&.Mui-focused $notchedOutline': {
          borderColor: 'rgba(255, 255, 255, .7)'
       },
       '& input': {
@@ -49,7 +50,6 @@ const useStyles = makeStyles(() => ({
          transform: 'translate(14px, 14px) scale(1)'
       }
    },
-   // focused: {},
    notchedOutline: {}
 }));
 
@@ -59,19 +59,20 @@ const InputRenderer: React.FC<InputRendererProps> = (props) => {
 
    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value);
+      props.changeValueCallback(event.target.value)
    }
 
-   const keyPressHandler = (event: React.KeyboardEvent) => {
-      if(event.key === 'Enter') {
-         setValue('')
-         console.log(value);
-      }
-   }
+   // const keyPressHandler = (event: React.KeyboardEvent) => {
+   //    if(event.key === 'Enter') {
+   //       setValue('')
+   //       console.log(value);
+   //    }
+   // }
 
    return (
       <>
          <CustomInput 
-            id="outlined-basic"
+            id={props.id}
             classes={{
                root: classes.root,
             }}
@@ -81,13 +82,17 @@ const InputRenderer: React.FC<InputRendererProps> = (props) => {
                   notchedOutline: classes.notchedOutline
                }
             }}
-            // className={classes.root}
+            name={props.name}
+            type={props.type}
             label={props.label}
             variant="outlined"
             value={value}
             onChange={changeHandler}
-            onKeyPress={keyPressHandler}
+            // onKeyPress={keyPressHandler}
+            error={(props.errorText !== '' && props.errorText !== undefined)}
+            // helperText={props.errorText ? props.errorText : tip}
          />
+         {/* <span className="error-text"></span> */}
       </>
    );
 }

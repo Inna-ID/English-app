@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 interface ButtonRendererProps {
    text: string,
-   clickHandle(): void
+   submitHandler(): void
 }
 
 const CustomButton = withStyles({
@@ -27,7 +27,7 @@ const CustomButton = withStyles({
 const ButtonRenderer: React.FC<ButtonRendererProps> = (props) => {
 
    return (
-      <CustomButton variant="contained" color="primary" onClick={props.clickHandle}>
+      <CustomButton variant="contained" color="primary" onClick={props.submitHandler}>
          {props.text}
       </CustomButton>
    )

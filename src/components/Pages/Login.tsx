@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
    root: {
       display: 'flex',
       flexDirection: 'column',
-      marginTop: 25,
+      marginTop: 15,
       '& > *': {
-         marginTop: theme.spacing(1),
-         marginBottom: theme.spacing(1),
+         marginTop: theme.spacing(2),
+         marginBottom: theme.spacing(2),
      },
      '& button': {
         marginTop: 20,
@@ -32,18 +32,39 @@ const useStyles = makeStyles((theme) => ({
 
 const Login: React.FC = () => {
    const [email, setEmail] = useState('');
+   const [isEmailValid, setIsEmailValid] = useState(false)
+   const [emailErrorText, setEmailErrorText] = useState('');
    const [password, setPassword] = useState('');
+   const [isPasswordValid, setIsPasswordValid] = useState(false);
+   const [passwordErrorText, setPasswordErrorText] = useState('');
    const classes = useStyles();
 
-   const submitHandler = (event: React.FormEvent) => {
-      event.preventDefault();
+   const submitHandler = async () => {
+      if(! validateForm()) {
+         return;
+      }
+      const user = {
+         email,
+         password
+      }
+      console.log(`user email: ${email}, user password: ${password}`)
+      //await fetchPostData('/api/auth/login', user, successCallback, errorCallback);
    }
+   // const successCallback = (result: object) => {
+   //    history.push('/other_page');
+   // };
+      // const errorCallback = ({message}: string) => {
+   //    console.log(message);
+   // };
 
-   const clickHandle = () => {
+   const validateForm = () => {
       if(email !== '' && password !== '') {
-         console.log(`Log in with creds: \n ${email} \n ${password}`)
+         ///setIsEmailValid  setIsPasswordValid
+         return true;
       } else {
          console.log('check creds');
+         ///setIsEmailValid  setIsPasswordValid
+         return false;
       }
    }
 
@@ -52,16 +73,29 @@ const Login: React.FC = () => {
       <Typography variant="h4" component="h1" className="main-title">
       Login
       </Typography>
-      <form className={classes.root} autoComplete="off" onSubmit={submitHandler}>
+      <form className={classes.root} autoComplete="off">
          <InputRenderer 
+            id="login-email"
+            name='email'
+            type='email'
             label="E-mail"
             value={email}
+            changeValueCallback={setEmail}
+            // isValid={isEmailValid}
+            // setIsValid={setIsEmailValid}
+            errorText={emailErrorText}
+            // setErrorText={setEmailErrorText}
          />
-         <InputRenderer 
+         <InputRenderer
+            id="login-password"
+            name='password'
+            type='password'
             label="Password"
             value={password}
+            changeValueCallback={setPassword}
+            errorText={passwordErrorText}
          />
-         <ButtonRenderer text="Login" clickHandle={clickHandle}/>
+         <ButtonRenderer text="Login" submitHandler={submitHandler}/>
       </form>
       <Box mt={2}>
          <Typography variant="body1" component="p" className={classes.question}>
