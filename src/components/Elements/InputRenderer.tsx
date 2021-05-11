@@ -12,7 +12,8 @@ interface InputRendererProps {
    value: string,
    changeValueCallback(value: string): void,
    // isValid: boolean,
-   errorText: string
+   errorText: string,
+   tip?: string
    // setIsValid(): boolean
 }
 
@@ -27,6 +28,12 @@ const CustomInput = withStyles({
       '& fieldset': {
          borderColor: '#fff',
       },
+      '& .MuiFormHelperText-contained': {
+         marginLeft: 5,
+         marginRight: 5,
+         lineHeight: 1.24,
+         color: '#ffbbb6'
+      }
    },
 })(TextField);
 
@@ -56,6 +63,7 @@ const useStyles = makeStyles(() => ({
 const InputRenderer: React.FC<InputRendererProps> = (props) => {
    const [value, setValue] = useState<string>('');
    const classes = useStyles();
+   const tip = props.tip ? props.tip : ' ';
 
    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value);
@@ -90,7 +98,7 @@ const InputRenderer: React.FC<InputRendererProps> = (props) => {
             onChange={changeHandler}
             // onKeyPress={keyPressHandler}
             error={(props.errorText !== '' && props.errorText !== undefined)}
-            // helperText={props.errorText ? props.errorText : tip}
+            helperText={props.errorText ? props.errorText : tip}
          />
          {/* <span className="error-text"></span> */}
       </>

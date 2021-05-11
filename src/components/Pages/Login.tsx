@@ -4,6 +4,8 @@ import InputRenderer from '../Elements/InputRenderer';
 import ButtonRenderer from '../Elements/ButtonRenderer';
 import LinkRenderer from '../Elements/LinkRenderer';
 import { Typography, Box } from '@material-ui/core';
+import { validateEmail, validatePassword } from '../../utils/validation';
+import * as L from '../../constants/labels';
 
 const useStyles = makeStyles((theme) => ({
    root: {
@@ -11,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
       marginTop: 15,
       '& > *': {
-         marginTop: theme.spacing(2),
-         marginBottom: theme.spacing(2),
+         marginTop: theme.spacing(1),
+         marginBottom: theme.spacing(1),
      },
      '& button': {
         marginTop: 20,
@@ -32,10 +34,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Login: React.FC = () => {
    const [email, setEmail] = useState('');
-   const [isEmailValid, setIsEmailValid] = useState(false)
    const [emailErrorText, setEmailErrorText] = useState('');
    const [password, setPassword] = useState('');
-   const [isPasswordValid, setIsPasswordValid] = useState(false);
    const [passwordErrorText, setPasswordErrorText] = useState('');
    const classes = useStyles();
 
@@ -58,7 +58,10 @@ const Login: React.FC = () => {
    // };
 
    const validateForm = () => {
-      if(email !== '' && password !== '') {
+      const isEmailValid = validateEmail(email, setEmailErrorText);
+      const isPasswordValid = validatePassword(password, setPasswordErrorText);
+
+      if(isEmailValid && isPasswordValid) {
          ///setIsEmailValid  setIsPasswordValid
          return true;
       } else {
@@ -71,7 +74,7 @@ const Login: React.FC = () => {
    return (
       <div className="form-wrap">
       <Typography variant="h4" component="h1" className="main-title">
-      Login
+         { L.LOGIN }
       </Typography>
       <form className={classes.root} autoComplete="off">
          <InputRenderer 
