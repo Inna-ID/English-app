@@ -1,6 +1,5 @@
 ﻿{
   "compilerOptions": {
-    "outDir": "./dist/",
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,

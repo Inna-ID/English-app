@@ -13,11 +13,16 @@ module.exports = {
     },
     module: {
         rules: [
-          {
-            test: /\.tsx?$/,
-            exclude: /(node_modules|bower_components)/,
-            use: 'ts-loader',
-          }
+            {
+                test: /\.tsx$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', "@babel/preset-react", "@babel/preset-typescript"]
+                    }
+                }
+            }
         ]
     }
 }
