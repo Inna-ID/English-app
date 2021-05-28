@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "start": "start-server.ps1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",

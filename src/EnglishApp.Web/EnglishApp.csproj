@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\.gitignore" />
+    <Content Remove="wwwroot\package-lock.json" />
+    <Content Remove="wwwroot\package.json" />
+    <Content Remove="wwwroot\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\package-lock.json" />
+    <None Include="wwwroot\package.json" />
+    <None Include="wwwroot\src\components\App.js" />
+    <None Include="wwwroot\src\index.js" />
+    <None Include="wwwroot\tsconfig.json" />
+    <None Include="wwwroot\webpack.config.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\src\components\App.tsx" />
+    <None Include="wwwroot\src\index.tsx" />
+  </ItemGroup>
+
+</Project>
