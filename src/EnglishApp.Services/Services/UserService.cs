@@ -17,7 +17,8 @@ namespace EnglishApp.Services.Services
                 {
                    Id = 1,
                    Email = "inna@domain.com",
-                   PasswordHash = "123".GetHashCode()
+                   PasswordHash = "123".GetHashCode(),
+                   Role = "Administrator"
                 }
             };
         }

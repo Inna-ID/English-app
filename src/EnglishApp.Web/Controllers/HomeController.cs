@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EnglishApp.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class HomeController : ControllerBase
@@ -26,7 +28,7 @@ namespace EnglishApp.Controllers
         }
 
         //[HttpGet("Getauto/{id}")] -- example api/home/getauto/3
-        [HttpGet("{id}")] //-- example //example api/home/3
+        [HttpGet("{id}")] //example api/home/3
         public JsonResult GetAuto(int id)
         {
             var result = _autos.SingleOrDefault(x => x.Id == id);
