@@ -59,8 +59,21 @@ namespace EnglishApp
             }
 
             // 1st -- tries return static files for requiest
-            app.UseStaticFiles();
-
+            if (env.IsDevelopment())
+            {
+                app.Map(
+                    "/js",
+                    ctx => ctx.UseSpa(
+                        spa =>
+                        {
+                            spa.UseProxyToSpaDevelopmentServer("http://localhost:3002/");
+                        })); ;
+            }
+            else
+            {
+                app.UseStaticFiles();
+            }
+            // app.UseStaticFiles();
             // 2nd -- tries process request as API call
             app.UseRouting();
 

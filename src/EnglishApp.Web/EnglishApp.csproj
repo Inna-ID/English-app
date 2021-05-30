@@ -8,15 +8,17 @@
     <Content Remove="wwwroot\.gitignore" />
     <Content Remove="wwwroot\package-lock.json" />
     <Content Remove="wwwroot\package.json" />
+    <Content Remove="wwwroot\start-env.ps1" />
     <Content Remove="wwwroot\start-server.ps1" />
+    <Content Remove="wwwroot\start-webpack-dev-server.ps1" />
     <Content Remove="wwwroot\tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\package-lock.json" />
     <None Include="wwwroot\package.json" />
-    <None Include="wwwroot\src\components\App.js" />
-    <None Include="wwwroot\src\index.js" />
+    <None Include="wwwroot\start-env.ps1" />
+    <None Include="wwwroot\start-webpack-dev-server.ps1" />
     <None Include="wwwroot\start-server.ps1" />
     <None Include="wwwroot\tsconfig.json" />
     <None Include="wwwroot\webpack.config.js" />
@@ -24,7 +26,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.6" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.1" />
   </ItemGroup>
 

@@ -1,0 +1,2 @@
+start powershell.exe -ArgumentList "-noexit -Command cd $PSScriptRoot; .\start-server-aspnet.ps1" -Verb runas
+start powershell.exe -ArgumentList "-noexit -Command cd $PSScriptRoot; .\start-server-webpack-front.ps1" -Verb runas
